@@ -23,6 +23,10 @@
     },
     {
       "name": "walkietalkie-on"
+    },
+    {
+      "name": "equipped-NECK",
+      "directions": 4
     }
   ]
 }

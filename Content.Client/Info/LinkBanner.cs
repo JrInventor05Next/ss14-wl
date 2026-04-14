@@ -26,7 +26,7 @@ namespace Content.Client.Info
             var uriOpener = IoCManager.Resolve<IUriOpener>();
             _cfg = IoCManager.Resolve<IConfigurationManager>();
 
-            var rulesButton = new Button() {Text = Loc.GetString("server-info-rules-button")};
+            var rulesButton = new Button() { Text = Loc.GetString("server-info-rules-button") };
             rulesButton.OnPressed += args => new RulesAndInfoWindow().Open();
             buttons.AddChild(rulesButton);
 

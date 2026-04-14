@@ -79,7 +79,7 @@ public sealed partial class LayerMarkingItem : BoxContainer, ISearchableControl
 
     private void MarkingsChanged(ProtoId<OrganCategoryPrototype> organ, HumanoidVisualLayers layer)
     {
-        if (_organ != organ ||  _layer != layer)
+        if (_organ != organ || _layer != layer)
             return;
 
         UpdateSelection();

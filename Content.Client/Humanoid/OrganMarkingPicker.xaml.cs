@@ -1,4 +1,3 @@
-using System.Linq;
 using Content.Shared.Body;
 using Content.Shared.Humanoid;
 using Content.Shared.Humanoid.Markings;
@@ -13,10 +12,9 @@ namespace Content.Client.Humanoid;
 [GenerateTypedNameReferences]
 public sealed partial class OrganMarkingPicker : Control
 {
+    [Dependency] private readonly ILocalizationManager _loc = default!;
     [Dependency] private readonly MarkingManager _marking = default!;
     [Dependency] private readonly IEntityManager _entity = default!;
-
-    private readonly SpriteSystem _sprite;
 
     private readonly MarkingsViewModel _markingsModel;
     private readonly HashSet<HumanoidVisualLayers> _layers;
@@ -32,8 +30,6 @@ public sealed partial class OrganMarkingPicker : Control
         _layers = layers;
         _group = group;
         _organ = organ;
-
-        _sprite = _entity.System<SpriteSystem>();
 
         UpdateMarkings();
     }
@@ -79,10 +75,10 @@ public sealed partial class OrganMarkingPicker : Control
 
             var control = new LayerMarkingPicker(_markingsModel, _organ, layer, allMarkings);
             LayerTabs.AddChild(control);
-            if (Loc.TryGetString($"markings-layer-{layer}-{_group.Id}", out var layerTitle))
+            if (_loc.TryGetString($"markings-layer-{layer}-{_group.Id}", out var layerTitle))
                 LayerTabs.SetTabTitle(i, layerTitle);
             else
-                LayerTabs.SetTabTitle(i, Loc.GetString($"markings-layer-{layer}"));
+                LayerTabs.SetTabTitle(i, _loc.GetString($"markings-layer-{layer}"));
             i++;
         }
 

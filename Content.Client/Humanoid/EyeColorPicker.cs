@@ -9,12 +9,8 @@ public sealed class EyeColorPicker : Control
 
     private readonly ColorSelectorSliders _colorSelectors;
 
-    private Color _lastColor;
-
     public void SetData(Color color)
     {
-        _lastColor = color;
-
         _colorSelectors.Color = color;
     }
 
@@ -35,7 +31,5 @@ public sealed class EyeColorPicker : Control
     private void ColorValueChanged(Color newColor)
     {
         OnEyeColorPicked?.Invoke(newColor);
-
-        _lastColor = newColor;
     }
 }

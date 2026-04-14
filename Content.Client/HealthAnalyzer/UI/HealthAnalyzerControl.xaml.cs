@@ -6,7 +6,6 @@ using Content.Shared.Damage.Prototypes;
 using Content.Shared.Damage.Systems;
 using Content.Shared.FixedPoint;
 using Content.Shared.Humanoid;
-using Content.Shared.Humanoid.Prototypes;
 using Content.Shared.IdentityManagement;
 using Content.Shared.MedicalScanner;
 using Content.Shared.Mobs;
@@ -168,7 +167,7 @@ public sealed partial class HealthAnalyzerControl : BoxContainer
 
             var groupTitleText = $"{Loc.GetString(
                 "health-analyzer-window-damage-group-text",
-                ("damageGroup", _prototypes.Index<DamageGroupPrototype>(damageGroupId).LocalizedName),
+                ("damageGroup", _prototypes.Index(damageGroupId).LocalizedName),
                 ("amount", damageAmount)
             )}";
 
@@ -183,7 +182,7 @@ public sealed partial class HealthAnalyzerControl : BoxContainer
             GroupsContainer.AddChild(groupContainer);
 
             // Show the damage for each type in that group.
-            var group = _prototypes.Index<DamageGroupPrototype>(damageGroupId);
+            var group = _prototypes.Index(damageGroupId);
 
             foreach (var type in group.DamageTypes)
             {

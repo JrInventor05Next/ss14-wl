@@ -9,7 +9,7 @@ namespace Content.Client.Gravity;
 /// <inheritdoc/>
 public sealed class FloatingVisualizerSystem : SharedFloatingVisualizerSystem
 {
-    [Dependency] private readonly AnimationPlayerSystem AnimationSystem = default!;
+    [Dependency] private readonly AnimationPlayerSystem _animationSystem = default!;
 
     public override void Initialize()
     {
@@ -23,14 +23,14 @@ public sealed class FloatingVisualizerSystem : SharedFloatingVisualizerSystem
     {
         if (stop)
         {
-            AnimationSystem.Stop(uid, animationKey);
+            _animationSystem.Stop(uid, animationKey);
             return;
         }
 
         var animation = new Animation
         {
             // We multiply by the number of extra keyframes to make time for them
-            Length = TimeSpan.FromSeconds(animationTime*2),
+            Length = TimeSpan.FromSeconds(animationTime * 2),
             AnimationTracks =
             {
                 new AnimationTrackComponentProperty
@@ -48,8 +48,8 @@ public sealed class FloatingVisualizerSystem : SharedFloatingVisualizerSystem
             }
         };
 
-        if (!AnimationSystem.HasRunningAnimation(uid, animationKey))
-            AnimationSystem.Play(uid, animation, animationKey);
+        if (!_animationSystem.HasRunningAnimation(uid, animationKey))
+            _animationSystem.Play(uid, animation, animationKey);
     }
 
     private void OnAnimationCompleted(EntityUid uid, FloatingVisualsComponent component, AnimationCompletedEvent args)

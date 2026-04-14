@@ -57,7 +57,7 @@ public sealed partial class LayerMarkingOrderer : BoxContainer
 
     private void MarkingsChanged(ProtoId<OrganCategoryPrototype> organ, HumanoidVisualLayers layer)
     {
-        if (_organ != organ ||  _layer != layer)
+        if (_organ != organ || _layer != layer)
             return;
 
         UpdateItems();

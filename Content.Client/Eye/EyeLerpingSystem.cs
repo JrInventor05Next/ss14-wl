@@ -3,7 +3,6 @@ using Content.Shared.Movement.Components;
 using Content.Shared.Movement.Systems;
 using JetBrains.Annotations;
 using Robust.Client.GameObjects;
-using Robust.Client.Physics;
 using Robust.Client.Player;
 using Robust.Shared.Player;
 using Robust.Shared.Timing;
@@ -173,7 +172,7 @@ public sealed class EyeLerpingSystem : EntitySystem
 
     public override void FrameUpdate(float frameTime)
     {
-        var tickFraction = (float) _gameTiming.TickFraction / ushort.MaxValue;
+        var tickFraction = (float)_gameTiming.TickFraction / ushort.MaxValue;
         const double lerpMinimum = 0.00001;
         var query = AllEntityQuery<LerpingEyeComponent, EyeComponent, TransformComponent>();
 

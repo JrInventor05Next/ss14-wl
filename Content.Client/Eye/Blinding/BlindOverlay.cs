@@ -1,12 +1,8 @@
-using Content.Client.Movement.Systems;
 using Robust.Client.Graphics;
 using Robust.Client.Player;
 using Robust.Shared.Enums;
 using Robust.Shared.Prototypes;
-using Content.Shared.Eye.Blinding;
 using Content.Shared.Eye.Blinding.Components;
-using Content.Shared.Movement.Components;
-using Content.Shared.Movement.Systems;
 
 namespace Content.Client.Eye.Blinding
 {
@@ -78,7 +74,8 @@ namespace Content.Client.Eye.Blinding
             {
                 _blindableComponent.LightSetup = true; // Ok we touched the lights
                 _lightManager.Enabled = false;
-            } else
+            }
+            else
             {
                 _blindableComponent.GraceFrame = false;
             }

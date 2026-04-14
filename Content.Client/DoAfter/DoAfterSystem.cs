@@ -1,6 +1,5 @@
 using System.Diagnostics.CodeAnalysis;
 using Content.Shared.DoAfter;
-using Content.Shared.Hands.Components;
 using Robust.Client.Graphics;
 using Robust.Client.Player;
 using Robust.Shared.Prototypes;
@@ -99,7 +98,7 @@ public sealed class DoAfterSystem : SharedDoAfterSystem
             @event = candidateEvent;
             doAfter = candidate;
             var elapsed = time - doAfter.StartTime;
-            progress = (float) Math.Min(1, elapsed.TotalSeconds / doAfter.Args.Delay.TotalSeconds);
+            progress = (float)Math.Min(1, elapsed.TotalSeconds / doAfter.Args.Delay.TotalSeconds);
 
             return true;
         }

@@ -525,7 +525,7 @@ public sealed class DamageVisualsSystem : VisualizerSystem<DamageVisualsComponen
             if (!damageVisComp.Overlay && damageGroup != damageVisComp.DamageGroup)
                 continue;
 
-            if (!_prototypeManager.TryIndex<DamageGroupPrototype>(damageGroup, out var damageGroupPrototype)
+            if (!_prototypeManager.TryIndex(damageGroup, out var damageGroupPrototype)
                 || !damage.TryGetDamageInGroup(damageGroupPrototype, out var damageTotal))
                 continue;
 

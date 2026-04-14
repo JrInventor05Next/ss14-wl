@@ -1,5 +1,4 @@
 ﻿using Content.Shared.Eui;
-using Robust.Shared.IoC;
 using Robust.Shared.Network;
 
 namespace Content.Client.Eui
@@ -55,9 +54,11 @@ namespace Content.Client.Eui
         /// </summary>
         protected void SendMessage(EuiMessageBase msg)
         {
-            var netMsg = new MsgEuiMessage();
-            netMsg.Id = Id;
-            netMsg.Message = msg;
+            var netMsg = new MsgEuiMessage()
+            {
+                Id = Id,
+                Message = msg
+            };
 
             _netManager.ClientSendMessage(netMsg);
         }

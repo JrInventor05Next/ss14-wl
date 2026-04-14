@@ -4,6 +4,6 @@ namespace Content.Client.Explosion;
 [Access(typeof(ClusterGrenadeVisualizerSystem))]
 public sealed partial class ClusterGrenadeVisualsComponent : Component
 {
-    [DataField("state")]
+    [DataField]
     public string? State;
 }

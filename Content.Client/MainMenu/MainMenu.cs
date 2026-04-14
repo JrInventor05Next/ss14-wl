@@ -56,9 +56,9 @@ namespace Content.Client.MainMenu
         protected override void Shutdown()
         {
             _client.RunLevelChanged -= RunLevelChanged;
-            _netManager.ConnectFailed -= _onConnectFailed;
+            _netManager.ConnectFailed -= OnConnectFailed;
 
-            _mainMenuControl.Dispose();
+            _mainMenuControl.Orphan();
         }
 
         private void ChangelogButtonPressed(BaseButton.ButtonEventArgs args)
@@ -111,8 +111,8 @@ namespace Content.Client.MainMenu
                 _configurationManager.SaveToFile();
             }
 
-            _setConnectingState(true);
-            _netManager.ConnectFailed += _onConnectFailed;
+            SetConnectingState(true);
+            _netManager.ConnectFailed += OnConnectFailed;
             try
             {
                 ParseAddress(address, out var ip, out var port);
@@ -122,8 +122,8 @@ namespace Content.Client.MainMenu
             {
                 _userInterfaceManager.Popup($"Unable to connect: {e.Message}", "Connection error.");
                 _sawmill.Warning(e.ToString());
-                _netManager.ConnectFailed -= _onConnectFailed;
-                _setConnectingState(false);
+                _netManager.ConnectFailed -= OnConnectFailed;
+                SetConnectingState(false);
             }
         }
 
@@ -132,11 +132,11 @@ namespace Content.Client.MainMenu
             switch (args.NewLevel)
             {
                 case ClientRunLevel.Connecting:
-                    _setConnectingState(true);
+                    SetConnectingState(true);
                     break;
                 case ClientRunLevel.Initialize:
-                    _setConnectingState(false);
-                    _netManager.ConnectFailed -= _onConnectFailed;
+                    SetConnectingState(false);
+                    _netManager.ConnectFailed -= OnConnectFailed;
                     break;
             }
         }
@@ -179,14 +179,14 @@ namespace Content.Client.MainMenu
             }
         }
 
-        private void _onConnectFailed(object? _, NetConnectFailArgs args)
+        private void OnConnectFailed(object? _, NetConnectFailArgs args)
         {
-            _userInterfaceManager.Popup(Loc.GetString("main-menu-failed-to-connect",("reason", args.Reason)));
-            _netManager.ConnectFailed -= _onConnectFailed;
-            _setConnectingState(false);
+            _userInterfaceManager.Popup(Loc.GetString("main-menu-failed-to-connect", ("reason", args.Reason)));
+            _netManager.ConnectFailed -= OnConnectFailed;
+            SetConnectingState(false);
         }
 
-        private void _setConnectingState(bool state)
+        private void SetConnectingState(bool state)
         {
             _isConnecting = state;
             _mainMenuControl.DirectConnectButton.Disabled = state;

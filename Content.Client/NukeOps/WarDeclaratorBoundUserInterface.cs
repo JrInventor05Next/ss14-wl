@@ -4,7 +4,6 @@ using Content.Shared.NukeOps;
 using JetBrains.Annotations;
 using Robust.Client.UserInterface;
 using Robust.Shared.Configuration;
-using Robust.Shared.Timing;
 
 namespace Content.Client.NukeOps;
 
@@ -16,7 +15,7 @@ public sealed class WarDeclaratorBoundUserInterface : BoundUserInterface
     [ViewVariables]
     private WarDeclaratorWindow? _window;
 
-    public WarDeclaratorBoundUserInterface(EntityUid owner, Enum uiKey) : base(owner, uiKey) {}
+    public WarDeclaratorBoundUserInterface(EntityUid owner, Enum uiKey) : base(owner, uiKey) { }
 
     protected override void Open()
     {

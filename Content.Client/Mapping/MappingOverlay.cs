@@ -1,8 +1,6 @@
 ﻿using Robust.Client.GameObjects;
 using Robust.Client.Graphics;
-using Robust.Client.Input;
 using Robust.Client.Player;
-using Robust.Client.UserInterface;
 using Robust.Shared.Enums;
 using Robust.Shared.Prototypes;
 using static Content.Client.Mapping.MappingState;
@@ -62,27 +60,27 @@ public sealed class MappingOverlay : Overlay
         switch (_state.State)
         {
             case CursorState.Pick:
-            {
-                if (_state.GetHoveredEntity() is { } entity &&
-                    _entities.TryGetComponent(entity, out SpriteComponent? sprite))
                 {
-                    _oldColors[entity] = sprite.Color;
-                    _sprite.SetColor((entity, sprite), PickColor);
-                }
+                    if (_state.GetHoveredEntity() is { } entity &&
+                        _entities.TryGetComponent(entity, out SpriteComponent? sprite))
+                    {
+                        _oldColors[entity] = sprite.Color;
+                        _sprite.SetColor((entity, sprite), PickColor);
+                    }
 
-                break;
-            }
+                    break;
+                }
             case CursorState.Delete:
-            {
-                if (_state.GetHoveredEntity() is { } entity &&
-                    _entities.TryGetComponent(entity, out SpriteComponent? sprite))
                 {
-                    _oldColors[entity] = sprite.Color;
-                    _sprite.SetColor((entity, sprite), DeleteColor);
-                }
+                    if (_state.GetHoveredEntity() is { } entity &&
+                        _entities.TryGetComponent(entity, out SpriteComponent? sprite))
+                    {
+                        _oldColors[entity] = sprite.Color;
+                        _sprite.SetColor((entity, sprite), DeleteColor);
+                    }
 
-                break;
-            }
+                    break;
+                }
         }
 
         handle.UseShader(null);

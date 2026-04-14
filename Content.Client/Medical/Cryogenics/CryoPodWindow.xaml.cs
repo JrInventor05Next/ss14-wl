@@ -190,16 +190,16 @@ public sealed partial class CryoPodWindow : FancyWindow
         UpdateChecklistItem(ChemicalsCheck, Loc.GetString("cryo-pod-window-checklist-chemicals"), hasChemicals);
         UpdateChecklistItem(TemperatureCheck, Loc.GetString("cryo-pod-window-checklist-temperature"), hasTemperatureCheck);
 
-        var isReady = (hasCorrectPressure && hasChemicals && hasTemperatureCheck);
-        var isCooling = (lowestTempRequirement != null && hasPatient
-                          && msg.Health.Temperature > lowestTempRequirement);
-        var isInjecting = (injectingQuantity > 0);
-        StatusLabel.Text = (!isReady    ? Loc.GetString("cryo-pod-window-status-not-ready") :
+        var isReady = hasCorrectPressure && hasChemicals && hasTemperatureCheck;
+        var isCooling = lowestTempRequirement != null && hasPatient
+                          && msg.Health.Temperature > lowestTempRequirement;
+        var isInjecting = injectingQuantity > 0;
+        StatusLabel.Text = !isReady     ? Loc.GetString("cryo-pod-window-status-not-ready") :
                             isCooling   ? Loc.GetString("cryo-pod-window-status-cooling") :
                             isInjecting ? Loc.GetString("cryo-pod-window-status-injecting") :
                             hasPatient  ? Loc.GetString("cryo-pod-window-status-ready-to-inject") :
-                                          Loc.GetString("cryo-pod-window-status-ready-for-patient"));
-        StatusLabel.FontColorOverride = (isReady ? Color.DeepSkyBlue : Color.Orange);
+                                          Loc.GetString("cryo-pod-window-status-ready-for-patient");
+        StatusLabel.FontColorOverride = isReady ? Color.DeepSkyBlue : Color.Orange;
     }
 
     private void UpdateChecklistItem(Label label, string text, bool isOkay)

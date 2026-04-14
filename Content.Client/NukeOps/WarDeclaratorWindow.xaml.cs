@@ -96,7 +96,7 @@ public sealed partial class WarDeclaratorWindow : FancyWindow
 
     private void UpdateTimer()
     {
-        switch(_status)
+        switch (_status)
         {
             case WarConditionStatus.YesWar:
                 var timeLeft = _endTime.Subtract(_gameTiming.CurTime);

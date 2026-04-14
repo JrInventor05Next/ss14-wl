@@ -1,4 +1,3 @@
-using Content.Client.Stylesheets;
 using Content.Shared.Atmos;
 using Content.Shared.Atmos.Components;
 using Content.Shared.Atmos.EntitySystems;
@@ -135,7 +134,7 @@ public sealed partial class AtmosAlarmEntryContainer : BoxContainer
                     {
                         Text = Loc.GetString("atmos-alerts-window-other-gases-value-nil"),
                         FontOverride = normalFont,
-                        FontColorOverride = StyleNano.DisabledFore,
+                        FontColorOverride = Color.FromHex("#5A5A5A"), // StyleNano.DisabledFore is obsolete
                         HorizontalAlignment = HAlignment.Center,
                         VerticalAlignment = VAlignment.Center,
                         HorizontalExpand = true,
@@ -175,13 +174,13 @@ public sealed partial class AtmosAlarmEntryContainer : BoxContainer
 
     public void SetAsFocus()
     {
-        FocusButton.AddStyleClass(StyleNano.StyleClassButtonColorGreen);
+        FocusButton.AddStyleClass("ButtonColorGreen");
         ArrowTexture.TexturePath = "/Textures/Interface/Nano/inverted_triangle.svg.png";
     }
 
     public void RemoveAsFocus()
     {
-        FocusButton.RemoveStyleClass(StyleNano.StyleClassButtonColorGreen);
+        FocusButton.RemoveStyleClass("ButtonColorGreen");
         ArrowTexture.TexturePath = "/Textures/Interface/Nano/triangle_right.png";
         FocusContainer.Visible = false;
     }
@@ -191,13 +190,13 @@ public sealed partial class AtmosAlarmEntryContainer : BoxContainer
         switch (alarmType)
         {
             case AtmosAlarmType.Normal:
-                return StyleNano.GoodGreenFore;
-            case AtmosAlarmType.Warning:
-                return StyleNano.ConcerningOrangeFore;
+                return Color.FromHex("#31843E"); // idk how we can to replace THIS to new stile
+            case AtmosAlarmType.Warning:           // old style StyleNano.GoodGreenFore is obsolete
+                return Color.FromHex("#A5762F");
             case AtmosAlarmType.Danger:
-                return StyleNano.DangerousRedFore;
+                return Color.FromHex("#BB3232");
         }
 
-        return StyleNano.DisabledFore;
+        return Color.FromHex("#5A5A5A");
     }
 }

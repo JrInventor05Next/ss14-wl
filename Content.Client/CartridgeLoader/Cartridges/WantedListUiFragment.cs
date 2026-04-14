@@ -37,7 +37,7 @@ public sealed partial class WantedListUiFragment : BoxContainer
 
     private void OnSearchBarTextChanged(LineEdit.LineEditEventArgs args)
     {
-        var found = !String.IsNullOrWhiteSpace(args.Text)
+        var found = !string.IsNullOrWhiteSpace(args.Text)
             ? _wantedRecords.FindAll(r =>
                 r.TargetInfo.Name.Contains(args.Text) ||
                 r.Status.ToString().Contains(args.Text, StringComparison.OrdinalIgnoreCase))
@@ -84,7 +84,7 @@ public sealed partial class WantedListUiFragment : BoxContainer
         if (data is not StatusListData(var record))
             return;
 
-        FormattedMessage GetLoc(string fluentId, params (string,object)[] args)
+        FormattedMessage GetLoc(string fluentId, params (string, object)[] args)
         {
             var msg = new FormattedMessage();
             var fluent = Loc.GetString(fluentId, args);

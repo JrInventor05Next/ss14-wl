@@ -7,31 +7,31 @@ namespace Content.Client.Atmos.Components;
 [RegisterComponent]
 public sealed partial class FireVisualsComponent : Component
 {
-    [DataField("fireStackAlternateState")]
+    [DataField]
     public int FireStackAlternateState = 3;
 
-    [DataField("normalState")]
+    [DataField]
     public string? NormalState;
 
-    [DataField("alternateState")]
+    [DataField]
     public string? AlternateState;
 
-    [DataField("sprite")]
+    [DataField]
     public string? Sprite;
 
-    [DataField("lightEnergyPerStack")]
+    [DataField]
     public float LightEnergyPerStack = 0.5f;
 
-    [DataField("lightRadiusPerStack")]
+    [DataField]
     public float LightRadiusPerStack = 0.3f;
 
-    [DataField("maxLightEnergy")]
+    [DataField]
     public float MaxLightEnergy = 10f;
 
-    [DataField("maxLightRadius")]
+    [DataField]
     public float MaxLightRadius = 4f;
 
-    [DataField("lightColor")]
+    [DataField]
     public Color LightColor = Color.Orange;
 
     /// <summary>

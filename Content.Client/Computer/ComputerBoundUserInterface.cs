@@ -1,4 +1,3 @@
-using Robust.Client.GameObjects;
 using Robust.Client.UserInterface;
 using Robust.Client.UserInterface.CustomControls;
 
@@ -36,7 +35,7 @@ namespace Content.Client.Computer
                 return;
             }
 
-            _window.UpdateState((TState) state);
+            _window.UpdateState((TState)state);
         }
 
         protected override void ReceiveMessage(BoundUserInterfaceMessage message)

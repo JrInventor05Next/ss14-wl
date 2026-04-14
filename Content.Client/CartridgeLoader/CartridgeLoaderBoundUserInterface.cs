@@ -1,6 +1,5 @@
 ﻿using Content.Client.UserInterface.Fragments;
 using Content.Shared.CartridgeLoader;
-using Robust.Client.GameObjects;
 using Robust.Client.UserInterface;
 
 namespace Content.Client.CartridgeLoader;
@@ -60,7 +59,6 @@ public abstract class CartridgeLoaderBoundUserInterface : BoundUserInterface
         }
 
         _activeCartridgeUI = ui;
-        _activeUiFragment?.Dispose();
         _activeUiFragment = control;
     }
 
@@ -116,14 +114,6 @@ public abstract class CartridgeLoaderBoundUserInterface : BoundUserInterface
     protected abstract void DetachCartridgeUI(Control cartridgeUIFragment);
 
     protected abstract void UpdateAvailablePrograms(List<(EntityUid, CartridgeComponent)> programs);
-
-    protected override void Dispose(bool disposing)
-    {
-        base.Dispose(disposing);
-
-        if (disposing)
-            _activeUiFragment?.Dispose();
-    }
 
     protected CartridgeComponent? RetrieveCartridgeComponent(EntityUid? cartridgeUid)
     {

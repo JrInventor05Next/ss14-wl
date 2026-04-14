@@ -9,7 +9,6 @@ using Robust.Client.GameObjects;
 using Robust.Client.Player;
 using Robust.Shared.Utility;
 using Robust.Shared.Prototypes;
-using static Robust.Client.UserInterface.Controls.BaseButton;
 
 namespace Content.Client.Cargo.BUI
 {
@@ -154,8 +153,8 @@ namespace Content.Client.Cargo.BUI
             if (!disposing)
                 return;
 
-            _menu?.Dispose();
-            _orderMenu?.Dispose();
+            _menu?.Close();
+            _orderMenu?.Close();
         }
 
         private bool AddOrder()

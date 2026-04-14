@@ -1,7 +1,6 @@
 using System.Linq;
 using System.Numerics;
 using Content.Client.Lobby;
-using Content.Client.Stylesheets;
 using Content.Client.UserInterface.Systems.MenuBar.Widgets;
 using Content.Shared.Construction.Prototypes;
 using Content.Shared.Whitelist;
@@ -229,7 +228,7 @@ namespace Content.Client.Construction.UI
 
                 var itemButtonPanelContainer = new PanelContainer
                 {
-                    PanelOverride = new StyleBoxFlat { BackgroundColor = StyleNano.ButtonColorDefault },
+                    PanelOverride = new StyleBoxFlat { BackgroundColor = Color.FromHex("#464966") },
                     Children = { itemButton },
                 };
 
@@ -312,7 +311,7 @@ namespace Content.Client.Construction.UI
                 return;
 
             button.Children.Single().Modulate = select ? Color.Green : Color.White;
-            var buttonColor = select ? StyleNano.ButtonColorDefault : Color.Transparent;
+            var buttonColor = select ? Color.FromHex("#464966") : Color.Transparent;
             buttonPanel.PanelOverride = new StyleBoxFlat { BackgroundColor = buttonColor };
         }
 
@@ -436,11 +435,10 @@ namespace Content.Client.Construction.UI
                 }
 
                 _placementManager.BeginPlacing(new PlacementInformation
-                    {
-                        IsTile = false,
-                        PlacementOption = _selected.PlacementMode
-                    },
-                    new ConstructionPlacementHijack(_constructionSystem, _selected));
+                {
+                    IsTile = false,
+                    PlacementOption = _selected.PlacementMode
+                }, new ConstructionPlacementHijack(_constructionSystem, _selected));
 
                 UpdateGhostPlacement();
             }
@@ -464,11 +462,10 @@ namespace Content.Client.Construction.UI
             var constructSystem = _systemManager.GetEntitySystem<ConstructionSystem>();
 
             _placementManager.BeginPlacing(new PlacementInformation()
-                {
-                    IsTile = false,
-                    PlacementOption = _selected.PlacementMode,
-                },
-                new ConstructionPlacementHijack(constructSystem, _selected));
+            {
+                IsTile = false,
+                PlacementOption = _selected.PlacementMode,
+            }, new ConstructionPlacementHijack(constructSystem, _selected));
 
             _constructionView.BuildButtonPressed = true;
         }

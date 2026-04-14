@@ -1,5 +1,4 @@
 using System.Numerics;
-using Content.Shared.Light;
 using Content.Shared.Light.Components;
 using Robust.Client.Graphics;
 using Robust.Client.UserInterface;
@@ -43,7 +42,7 @@ public sealed class HandheldLightStatus : Control
 
         for (var i = 0; i < _sections.Length; i++)
         {
-            var panel = new PanelContainer {MinSize = new Vector2(20, 20)};
+            var panel = new PanelContainer { MinSize = new Vector2(20, 20) };
             wrapper.AddChild(panel);
             _sections[i] = panel;
         }

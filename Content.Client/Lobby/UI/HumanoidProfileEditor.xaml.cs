@@ -405,13 +405,11 @@ namespace Content.Client.Lobby.UI
             SetDirty();
         }
 
-        protected override void Dispose(bool disposing)
+        protected override void ExitedTree()
         {
-            base.Dispose(disposing);
-            if (!disposing)
-                return;
+            base.ExitedTree();
 
-            _loadoutWindow?.Dispose();
+            _loadoutWindow?.Close();
             _loadoutWindow = null;
         }
 

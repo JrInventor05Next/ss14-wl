@@ -36,7 +36,7 @@ namespace Content.Client.Kitchen.UI
                     Text = (i * 5).ToString(),
                     TextAlign = Label.AlignMode.Center,
                     ToggleMode = true,
-                    CookTime = (uint) (i * 5),
+                    CookTime = (uint)(i * 5),
                     Group = CookTimeButtonGroup,
                     HorizontalExpand = true,
                 };

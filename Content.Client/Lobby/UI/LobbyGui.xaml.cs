@@ -42,10 +42,10 @@ namespace Content.Client.Lobby.UI
                 case LobbyGuiState.CharacterSetup:
                     CharacterSetupState.Visible = true;
 
-                    var actualWidth = (float) UserInterfaceManager.RootControl.PixelWidth;
-                    var setupWidth = (float) LeftSide.PixelWidth;
+                    var actualWidth = (float)UserInterfaceManager.RootControl.PixelWidth;
+                    var setupWidth = (float)LeftSide.PixelWidth;
 
-                    if (1 - (setupWidth / actualWidth) > 0.30)
+                    if (1 - setupWidth / actualWidth > 0.30)
                     {
                         RightSide.Visible = false;
                     }

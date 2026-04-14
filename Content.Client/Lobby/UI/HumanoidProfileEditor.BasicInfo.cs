@@ -1,4 +1,3 @@
-
 using Content.Shared.Preferences;
 
 namespace Content.Client.Lobby.UI;

@@ -45,12 +45,13 @@ public sealed partial class HumanoidProfileEditor
     /// </summary>
     public void RefreshLoadouts()
     {
-        _loadoutWindow?.Dispose();
+        _loadoutWindow?.Close();
+        _loadoutWindow = null;
     }
 
     private void OpenLoadout(JobPrototype? jobProto, RoleLoadout roleLoadout, RoleLoadoutPrototype roleLoadoutProto)
     {
-        _loadoutWindow?.Dispose();
+        _loadoutWindow?.Close();
         _loadoutWindow = null;
         var collection = IoCManager.Instance;
 

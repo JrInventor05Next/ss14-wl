@@ -1,9 +1,6 @@
-using System;
 using Robust.Client;
 using Robust.Client.UserInterface;
 using Robust.Shared.Configuration;
-using Robust.Shared.IoC;
-using Robust.Shared.Log;
 using Robust.Shared.Network;
 using Robust.Shared.Prototypes;
 using Robust.Shared.Random;
@@ -75,7 +72,7 @@ namespace Content.Client.Launcher
 
         protected override void Shutdown()
         {
-            _control?.Dispose();
+            _control?.Orphan();
 
             _clientNetManager.ConnectFailed -= OnConnectFailed;
             _clientNetManager.ClientConnectStateChanged -= OnConnectStateChanged;

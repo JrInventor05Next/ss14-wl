@@ -8,7 +8,6 @@ using Content.Client.Players.PlayTimeTracking;
 using Content.Shared.CCVar;
 using Content.Shared.Preferences;
 using Content.Shared.Roles;
-using Content.Shared.StatusIcon;
 using Robust.Client.Console;
 using Robust.Client.GameObjects;
 using Robust.Client.UserInterface;
@@ -275,7 +274,7 @@ namespace Content.Client.LateJoin
                             {
                                 TextureScale = new Vector2(0.4f, 0.4f),
                                 Stretch = TextureRect.StretchMode.KeepCentered,
-                                Texture = _sprites.Frame0(new SpriteSpecifier.Texture(new ("/Textures/Interface/Nano/lock.svg.192dpi.png"))),
+                                Texture = _sprites.Frame0(new SpriteSpecifier.Texture(new("/Textures/Interface/Nano/lock.svg.192dpi.png"))),
                                 HorizontalExpand = true,
                                 HorizontalAlignment = HAlignment.Right,
                             });
@@ -324,17 +323,14 @@ namespace Content.Client.LateJoin
             }
         }
 
-        protected override void Dispose(bool disposing)
+        protected override void ExitedTree()
         {
-            base.Dispose(disposing);
+            base.ExitedTree();
 
-            if (disposing)
-            {
-                _jobRequirements.Updated -= RebuildUI;
-                _gameTicker.LobbyJobsAvailableUpdated -= JobsAvailableUpdated;
-                _jobButtons.Clear();
-                _jobCategories.Clear();
-            }
+            _jobRequirements.Updated -= RebuildUI;
+            _gameTicker.LobbyJobsAvailableUpdated -= JobsAvailableUpdated;
+            _jobButtons.Clear();
+            _jobCategories.Clear();
         }
     }
 

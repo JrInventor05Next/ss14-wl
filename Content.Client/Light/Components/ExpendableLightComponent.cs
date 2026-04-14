@@ -1,6 +1,5 @@
 using Content.Client.Light.EntitySystems;
 using Content.Shared.Light.Components;
-using Robust.Shared.Audio;
 
 namespace Content.Client.Light.Components;
 
@@ -13,31 +12,31 @@ public sealed partial class ExpendableLightComponent : SharedExpendableLightComp
     /// <summary>
     /// The icon state used by expendable lights when the they have been completely expended.
     /// </summary>
-    [DataField("iconStateSpent")]
+    [DataField]
     public string? IconStateSpent;
 
     /// <summary>
     /// The icon state used by expendable lights while they are lit.
     /// </summary>
-    [DataField("iconStateLit")]
+    [DataField]
     public string? IconStateLit;
 
     /// <summary>
     /// The sprite layer shader used while the expendable light is lit.
     /// </summary>
-    [DataField("spriteShaderLit")]
+    [DataField]
     public string? SpriteShaderLit = null;
 
     /// <summary>
     /// The sprite layer shader used after the expendable light has burnt out.
     /// </summary>
-    [DataField("spriteShaderSpent")]
+    [DataField]
     public string? SpriteShaderSpent = null;
 
     /// <summary>
     /// The sprite layer shader used after the expendable light has burnt out.
     /// </summary>
-    [DataField("glowColorLit")]
+    [DataField]
     public Color? GlowColorLit = null;
 
     /// <summary>

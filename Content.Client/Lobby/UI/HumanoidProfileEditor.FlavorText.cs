@@ -34,8 +34,8 @@ public sealed partial class HumanoidProfileEditor
 
             TabContainer.RemoveChild(_flavorText);
             _flavorText.OnFlavorTextChanged -= OnFlavorTextChange;
-            _flavorText.Dispose();
-            _flavorTextEdit?.Dispose();
+            _flavorText.Orphan();
+            _flavorTextEdit?.Orphan();
             _flavorTextEdit = null;
             _flavorText = null;
         }

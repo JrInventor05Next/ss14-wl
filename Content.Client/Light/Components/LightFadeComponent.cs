@@ -6,6 +6,6 @@ namespace Content.Client.Light.Components;
 [RegisterComponent]
 public sealed partial class LightFadeComponent : Component
 {
-    [ViewVariables(VVAccess.ReadWrite), DataField("duration")]
+    [ViewVariables(VVAccess.ReadWrite), DataField]
     public float Duration = 0.5f;
 }

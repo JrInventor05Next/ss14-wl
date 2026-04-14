@@ -1,4 +1,3 @@
-using System.Linq;
 using Content.Shared.Light.Components;
 using JetBrains.Annotations;
 using Robust.Client.Animations;
@@ -18,8 +17,8 @@ namespace Content.Client.Light.Components
     [ImplicitDataDefinitionForInheritors]
     public abstract partial class LightBehaviourAnimationTrack : AnimationTrackProperty
     {
-        protected IEntityManager _entMan = default!;
-        protected IRobustRandom _random = default!;
+        protected IEntityManager EntMan = default!;
+        protected IRobustRandom Random = default!;
 
         [DataField("id")] public string ID { get; set; } = string.Empty;
 
@@ -47,13 +46,13 @@ namespace Content.Client.Light.Components
 
         public void Initialize(EntityUid parent, IRobustRandom random, IEntityManager entMan)
         {
-            _random = random;
-            _entMan = entMan;
+            Random = random;
+            EntMan = entMan;
             _parent = parent;
 
-            if (Enabled && _entMan.TryGetComponent(_parent, out PointLightComponent? light))
+            if (Enabled && EntMan.TryGetComponent(_parent, out PointLightComponent? light))
             {
-                _entMan.System<PointLightSystem>().SetEnabled(_parent, true, light);
+                EntMan.System<PointLightSystem>().SetEnabled(_parent, true, light);
             }
 
             OnInitialize();
@@ -61,14 +60,14 @@ namespace Content.Client.Light.Components
 
         public void UpdatePlaybackValues(Animation owner)
         {
-            if (_entMan.TryGetComponent(_parent, out PointLightComponent? light))
+            if (EntMan.TryGetComponent(_parent, out PointLightComponent? light))
             {
-                _entMan.System<PointLightSystem>().SetEnabled(_parent, true, light);
+                EntMan.System<PointLightSystem>().SetEnabled(_parent, true, light);
             }
 
             if (MinDuration > 0)
             {
-                MaxTime = (float)_random.NextDouble() * (MaxDuration - MinDuration) + MinDuration;
+                MaxTime = (float)Random.NextDouble() * (MaxDuration - MinDuration) + MinDuration;
             }
             else
             {
@@ -92,7 +91,7 @@ namespace Content.Client.Light.Components
                 throw new InvalidOperationException("Property parameter is null! Check the prototype!");
             }
 
-            if (_entMan.TryGetComponent(_parent, out PointLightComponent? light))
+            if (EntMan.TryGetComponent(_parent, out PointLightComponent? light))
             {
                 AnimationHelper.SetAnimatableProperty(light, Property, value);
             }
@@ -241,16 +240,16 @@ namespace Content.Client.Light.Components
             // This is very janky. This could easily result in no visible animation at all if the random values happen
             // to all be close to each other.
             // TODO ANIMATIONS
-            _randomValue1 = (float)InterpolateLinear(StartValue, EndValue, (float)_random.NextDouble());
-            _randomValue2 = (float)InterpolateLinear(StartValue, EndValue, (float)_random.NextDouble());
-            _randomValue3 = (float)InterpolateLinear(StartValue, EndValue, (float)_random.NextDouble());
+            _randomValue1 = (float)InterpolateLinear(StartValue, EndValue, (float)Random.NextDouble());
+            _randomValue2 = (float)InterpolateLinear(StartValue, EndValue, (float)Random.NextDouble());
+            _randomValue3 = (float)InterpolateLinear(StartValue, EndValue, (float)Random.NextDouble());
         }
 
         public override void OnStart()
         {
             if (Property == nameof(PointLightComponent.AnimatedEnable)) // special case for boolean, we randomize it
             {
-                ApplyProperty(_random.NextDouble() < 0.5);
+                ApplyProperty(Random.NextDouble() < 0.5);
                 return;
             }
 
@@ -261,7 +260,7 @@ namespace Content.Client.Light.Components
             }
 
             _randomValue3 = _randomValue4;
-            _randomValue4 = (float)InterpolateLinear(StartValue, EndValue, (float) _random.NextDouble());
+            _randomValue4 = (float)InterpolateLinear(StartValue, EndValue, (float)Random.NextDouble());
         }
 
         public override (int KeyFrameIndex, float FramePlayingTime) AdvancePlayback(

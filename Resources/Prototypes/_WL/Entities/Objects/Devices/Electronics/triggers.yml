@@ -1,0 +1,29 @@
+- type: entity
+  parent: BaseItem
+  id: DeadMansSwitchTrigger
+  name: Dead man's switch
+  components:
+  - type: Sprite
+    sprite: Objects/Devices/signaltrigger.rsi
+    state: signaltrigger
+  - type: StaticPrice
+    price: 40
+  - type: DeviceNetwork
+    deviceNetId: Wireless
+    receiveFrequencyId: BasicDevice
+  - type: WirelessNetworkConnection
+    range: 15
+  - type: SignalOnTrigger
+    port: Pressed
+  - type: TriggerOnDeactivate
+  - type: DeviceLinkSource
+    ports:
+      - Pressed
+  - type: UserInterface
+    interfaces:
+      enum.WiresUiKey.Key:
+        type: WiresBoundUserInterface
+  - type: Wires
+    layoutId: Defusable
+    alwaysRandomize: true
+  - type: WiresPanel

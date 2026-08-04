@@ -1,4 +1,6 @@
 using Content.Shared._CorvaxGoob.Alert.Click;
+using Content.Shared._WL.Trigger.Components;
+using Content.Shared._WL.Trigger.Systems;
 using Content.Shared.Alert;
 using Content.Shared.Hands.Components;
 using Content.Shared.IdentityManagement;
@@ -14,6 +16,7 @@ public abstract partial class SharedOfferItemSystem : EntitySystem
     [Dependency] private SharedTransformSystem _transform = default!;
     [Dependency] private SharedPopupSystem _popup = default!;
     [Dependency] private IGameTiming _timing = default!;
+    [Dependency] private SharedTriggerOnDeactivateSystem _dmTrigger = default!;
 
     protected ProtoId<AlertPrototype> OfferAlert = "Offer";
 
@@ -59,11 +62,18 @@ public abstract partial class SharedOfferItemSystem : EntitySystem
 
         if (offerItem.Item is not null)
         {
+            // WL-Changes-start: Dead Man's switch
+            _dmTrigger.Transfer(offerItem.Item.Value);
+
             if (!_hand.TryPickup(ent, offerItem.Item.Value, handsComp: hands))
             {
+                _dmTrigger.Transfer(offerItem.Item.Value, true);
                 _popup.PopupEntity(Loc.GetString("offer-item-full-hand"), ent, ent);
                 return;
             }
+
+            _dmTrigger.EndTransfer(offerItem.Item.Value, ent);
+            // WL-Changes-end
 
             _popup.PopupEntity(Loc.GetString("offer-item-give",
                 ("item", Identity.Entity(offerItem.Item.Value, EntityManager)),

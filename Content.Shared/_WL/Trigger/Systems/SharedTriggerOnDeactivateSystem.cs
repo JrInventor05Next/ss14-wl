@@ -24,7 +24,6 @@ public sealed partial class SharedTriggerOnDeactivateSystem : TriggerOnXSystem
         SubscribeLocalEvent<TriggerOnDeactivateComponent, GetVerbsEvent<AlternativeVerb>>(OnGetAltVerbs);
         SubscribeLocalEvent<TriggerOnDeactivateComponent, ExaminedEvent>(OnExamine);
         SubscribeLocalEvent<TriggerOnDeactivateComponent, GotUnequippedHandEvent>(OnGotUnequippedHandEvent);
-        SubscribeLocalEvent<TriggerOnDeactivateComponent, GotEquippedHandEvent>(OnGotEquippedHandEvent);
         SubscribeLocalEvent<DeadManComponent, MobStateChangedEvent>(OnStateChanged);
     }
 
@@ -85,8 +84,6 @@ public sealed partial class SharedTriggerOnDeactivateSystem : TriggerOnXSystem
     }
 
     private void OnGotUnequippedHandEvent(Entity<TriggerOnDeactivateComponent> ent, ref GotUnequippedHandEvent args) => Release(ent);
-
-    private void OnGotEquippedHandEvent(Entity<TriggerOnDeactivateComponent> ent, ref GotEquippedHandEvent args) => Release(ent);
 
     private void OnStateChanged(Entity<DeadManComponent> ent, ref MobStateChangedEvent args)
     {

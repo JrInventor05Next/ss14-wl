@@ -2,6 +2,7 @@
   parent: BaseItem
   id: DeadMansSwitchTrigger
   name: Dead man's switch
+  description: If you activated it, that means you are in a dire situation.
   components:
   - type: Sprite
     sprite: Objects/Devices/signaltrigger.rsi
@@ -12,18 +13,10 @@
     deviceNetId: Wireless
     receiveFrequencyId: BasicDevice
   - type: WirelessNetworkConnection
-    range: 15
+    range: 20
   - type: SignalOnTrigger
     port: Pressed
   - type: TriggerOnDeactivate
   - type: DeviceLinkSource
     ports:
       - Pressed
-  - type: UserInterface
-    interfaces:
-      enum.WiresUiKey.Key:
-        type: WiresBoundUserInterface
-  - type: Wires
-    layoutId: Defusable
-    alwaysRandomize: true
-  - type: WiresPanel
